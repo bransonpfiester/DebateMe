@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debate Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0ece4;
+    --fg: #0a0a0a;
+    --accent-blue: #2a5cff;
+    --accent-red: #e03e36;
+    --muted: #8a8578;
+    --muted-light: rgba(10,10,10,0.35);
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--accent-blue);
+    color: #fff;
+  }
+
+  /* ==================== NAV ==================== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    transition: all 0.4s;
+  }
+
+  nav.scrolled {
+    padding: 16px 48px;
+    background: rgba(240, 236, 228, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--fg);
+  }
+
+  .nav-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-logo-mark svg { width: 14px; height: 14px; }
+
+  .nav-logo-text {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-style: italic;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--fg);
+    text-decoration: none;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  /* ==================== HERO ==================== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 48px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(56px, 9vw, 130px);
+    line-height: 0.92;
+    letter-spacing: -2px;
+    font-weight: 400;
+  }
+
+  .hero h1 .line2 {
+    font-style: italic;
+    display: block;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 24px;
+    padding-bottom: 8px;
+  }
+
+  .hero-description {
+    max-width: 300px;
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .hero-bottom-left {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    z-index: 2;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-explore {
+    position: absolute;
+    bottom: 48px;
+    right: 48px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .hero-explore:hover { color: var(--fg); }
+
+  /* ==================== STAGGERED TEXT SECTION (like "You jump... We jump...") ==================== */
+  .stagger-section {
+    padding: 200px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 200px;
+  }
+
+  .stagger-line {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .stagger-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger-line h2 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1.05;
+  }
+
+  .stagger-line h2 em {
+    font-style: italic;
+    color: var(--accent-blue);
+  }
+
+  .stagger-line.right {
+    text-align: right;
+  }
+
+  .stagger-line.right h2 em {
+    color: var(--accent-red);
+  }
+
+  /* ==================== ABOUT / WHAT WE DO (like Topology's numbered sections) ==================== */
+  .about-section {
+    padding: 80px 48px 160px;
+  }
+
+  .about-intro {
+    max-width: 640px;
+    margin-bottom: 120px;
+  }
+
+  .about-intro .label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .about-intro p {
+    font-size: 18px;
+    line-height: 1.75;
+    color: rgba(10,10,10,0.65);
+    font-weight: 300;
+  }
+
+  .numbered-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+
+  .numbered-block {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .numbered-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .numbered-block .num {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .numbered-block h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+
+  .numbered-block p {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(10,10,10,0.55);
+    font-weight: 300;
+    max-width: 420px;
+  }
+
+  /* ==================== PRINCIPLES (quote cards like Topology) ==================== */
+  .principles-section {
+    background: var(--fg);
+    color: var(--bg);
+    padding: 160px 48px;
+  }
+
+  .principles-section .section-title {
+    font-family: var(--serif);
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 100px;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .principle-card {
+    border: 1px solid rgba(240,236,228,0.06);
+    padding: 48px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 360px;
+    transition: background 0.5s;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .principle-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .principle-card:hover {
+    background: rgba(240,236,228,0.03);
+  }
+
+  .principle-card h3 {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.5px;
+  }
+
+  .principle-card p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(240,236,228,0.5);
+    font-weight: 300;
+    flex: 1;
+  }
+
+  .principle-quote {
+    border-top: 1px solid rgba(240,236,228,0.08);
+    padding-top: 20px;
+    margin-top: auto;
+  }
+
+  .principle-quote blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(240,236,228,0.4);
+    margin-bottom: 8px;
+  }
+
+  .principle-quote cite {
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(240,236,228,0.25);
+  }
+
+  /* ==================== ARENA PREVIEW ==================== */
+  .arena-section {
+    padding: 160px 48px;
+  }
+
+  .arena-title {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 80px;
+    font-style: italic;
+  }
+
+  .arena-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 56px;
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.03),
+      0 2px 4px rgba(0,0,0,0.02),
+      0 24px 80px rgba(0,0,0,0.05);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .arena-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .arena-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .arena-topic {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+  }
+
+  .arena-badge {
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 8px 18px;
+    border-radius: 100px;
+  }
+
+  .debate-rounds {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .argument-bubble {
+    max-width: 58%;
+    padding: 28px 32px;
+    border-radius: 24px;
+    font-size: 14.5px;
+    line-height: 1.75;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .argument-bubble .speaker {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .argument-bubble.human {
+    align-self: flex-start;
+    background: #eef1ff;
+    border: 1px solid rgba(42,92,255,0.08);
+  }
+  .argument-bubble.human .speaker { color: var(--accent-blue); }
+
+  .argument-bubble.ai {
+    align-self: flex-end;
+    background: #fef1f0;
+    border: 1px solid rgba(224,62,54,0.08);
+  }
+  .argument-bubble.ai .speaker { color: var(--accent-red); }
+
+  .vote-result {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .vote-label {
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .vote-bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .vote-bar-inner {
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-blue) 62%, transparent 62%, transparent 63%, var(--accent-red) 63%, var(--accent-red) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .vote-bar-inner.animate { transform: scaleX(1); }
+
+  .vote-numbers {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .vote-numbers .blue { color: var(--accent-blue); }
+  .vote-numbers .red { color: var(--accent-red); }
+
+  /* ==================== FEATURES (compact numbered) ==================== */
+  .features-section {
+    padding: 0 48px 160px;
+  }
+
+  .features-title {
+    font-family: var(--serif);
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 80px;
+    line-height: 1.05;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .feature-row {
+    display: grid;
+    grid-template-columns: 80px 280px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    align-items: start;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .feature-row.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .feature-row:hover {
+    background: rgba(0,0,0,0.01);
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .feature-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+
+  .feature-name {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    padding-top: 2px;
+  }
+
+  .feature-desc {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: rgba(10,10,10,0.5);
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  /* ==================== LEADERBOARD ==================== */
+  .leaderboard-section {
+    background: var(--fg);
+    color: var(--bg);
+    padding: 160px 48px;
+  }
+
+  .leaderboard-title {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -2px;
+    margin-bottom: 80px;
+  }
+
+  .lb-table {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .lb-header {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 120px 80px;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(240,236,228,0.1);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(240,236,228,0.3);
+  }
+
+  .lb-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 120px 80px;
+    gap: 16px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(240,236,228,0.04);
+    align-items: center;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .lb-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .lb-row:hover { background: rgba(240,236,228,0.02); margin: 0 -16px; padding: 24px 16px; }
+
+  .lb-rank {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(240,236,228,0.3);
+  }
+
+  .lb-row:nth-child(2) .lb-rank { color: #D4A017; }
+  .lb-row:nth-child(3) .lb-rank { color: #999; }
+  .lb-row:nth-child(4) .lb-rank { color: #B87333; }
+
+  .lb-user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .lb-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lb-name { font-weight: 400; font-size: 15px; }
+
+  .lb-elo {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+  }
+
+  .lb-record {
+    font-size: 13px;
+    color: rgba(240,236,228,0.4);
+    font-weight: 300;
+  }
+
+  .lb-rate {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ==================== CTA ==================== */
+  .cta-section {
+    padding: 200px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(56px, 9vw, 140px);
+    font-weight: 400;
+    letter-spacing: -3px;
+    line-height: 0.92;
+    margin-bottom: 40px;
+  }
+
+  .cta-section h2 em {
+    font-style: italic;
+    color: var(--accent-red);
+  }
+
+  .cta-sub {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 56px;
+    line-height: 1.7;
+    max-width: 340px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--fg);
+    color: var(--bg);
+    padding: 18px 44px;
+    border: none;
+    border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+  }
+
+  /* ==================== FOOTER ==================== */
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--fg); }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .hero-content { flex-direction: column; align-items: flex-start; padding: 0 24px 80px; }
+    .hero-right { align-items: flex-start; }
+    .hero-description { text-align: left; }
+    .hero-bottom-left, .hero-explore { display: none; }
+    .stagger-section { padding: 120px 24px; gap: 120px; }
+    .about-section { padding: 60px 24px 100px; }
+    .numbered-blocks { grid-template-columns: 1fr; gap: 60px; }
+    .principles-section { padding: 100px 24px; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .arena-section { padding: 100px 24px; }
+    .arena-card { padding: 28px; }
+    .argument-bubble { max-width: 85%; }
+    .features-section { padding: 0 24px 100px; }
+    .feature-row { grid-template-columns: 1fr; gap: 8px; }
+    .feature-num { display: none; }
+    .leaderboard-section { padding: 100px 24px; }
+    .lb-header, .lb-row { grid-template-columns: 40px 1fr 80px; }
+    .lb-record, .lb-rate, .lb-header span:nth-child(4), .lb-header span:nth-child(5) { display: none; }
+    .cta-section { padding: 120px 24px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#f0ece4" stroke-width="2.5" stroke-linecap="round"><path d="M4 12h16M12 5l7 7-7 7"/></svg>
+    </div>
+    <span class="nav-logo-text">Debate Me</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#arena">Arena</a></li>
+    <li><a href="#leaderboard">Rankings</a></li>
+    <li><a href="#cta">Enter</a></li>
+  </ul>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="home">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <h1>
+      Meet us<br>
+      <span class="line2">in the arena.</span>
+    </h1>
+    <div class="hero-right">
+      <p class="hero-description">A competitive debate platform where humans argue against AI and the internet decides who wins.</p>
+    </div>
+  </div>
+  <span class="hero-bottom-left">Debate Me ©2026</span>
+  <a href="#about" class="hero-explore">Explore</a>
+</section>
+
+<!-- ========== STAGGERED TEXT ========== -->
+<section class="stagger-section" id="stagger">
+  <div class="stagger-line">
+    <h2>You argue<em>...</em></h2>
+  </div>
+  <div class="stagger-line right">
+    <h2>AI argues <em>back.</em></h2>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about-section" id="about">
+  <div class="about-intro">
+    <span class="label">Where our name comes from</span>
+    <p>Inspired by the ancient art of dialectic — the pursuit of truth through structured argument. We believe the best ideas emerge when they're tested against their strongest opposition. Debate Me is the arena where your convictions are forged in fire.</p>
+  </div>
+  <div class="numbered-blocks">
+    <div class="numbered-block">
+      <span class="num">01.</span>
+      <h3>What we do.</h3>
+      <p>You submit a hot take on any topic. AI takes the opposite position and argues back with logic, evidence, and rhetorical precision. Three rounds. No mercy. No strawmen.</p>
+    </div>
+    <div class="numbered-block">
+      <span class="num">02.</span>
+      <h3>How it works.</h3>
+      <p>After three rounds of debate, your exchange goes live. The community reads both sides and votes on the winner. Your Elo rating rises or falls. Reputations are built one argument at a time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRINCIPLES ========== -->
+<section class="principles-section" id="principles">
+  <h2 class="section-title">Principles</h2>
+  <div class="principles-grid">
+    <div class="principle-card">
+      <h3>Argue with conviction.</h3>
+      <p>The strongest debates come from people who believe what they say. Take a real position, defend it fiercely, and trust that truth survives scrutiny.</p>
+      <div class="principle-quote">
+        <blockquote>"The test of a first-rate intelligence is the ability to hold two opposed ideas in mind and still retain the ability to function."</blockquote>
+        <cite>— F. Scott Fitzgerald</cite>
+      </div>
+    </div>
+    <div class="principle-card">
+      <h3>Steelman, never strawman.</h3>
+      <p>The AI doesn't take cheap shots. It argues the strongest possible version of the opposing case. If you can beat that, you've earned the win.</p>
+      <div class="principle-quote">
+        <blockquote>"It is the mark of an educated mind to be able to entertain a thought without accepting it."</blockquote>
+        <cite>— Aristotle</cite>
+      </div>
+    </div>
+    <div class="principle-card">
+      <h3>Let the crowd decide.</h3>
+      <p>Democracy in its purest form. No algorithm picks winners. Real people read your debate and vote on who made the better case. Period.</p>
+      <div class="principle-quote">
+        <blockquote>"In a debate, the truth is not determined by the loudest voice, but by the clearest thinking."</blockquote>
+        <cite>— Unknown</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ARENA ========== -->
+<section class="arena-section" id="arena">
+  <h2 class="arena-title">The Arena.</h2>
+  <div class="arena-card">
+    <div class="arena-meta">
+      <span class="arena-topic">"Pineapple belongs on pizza."</span>
+      <span class="arena-badge">Round 1 of 3</span>
+    </div>
+    <div class="debate-rounds">
+      <div class="argument-bubble human">
+        <span class="speaker">Human</span>
+        The sweet-savory contrast of pineapple with salty ham and tangy tomato sauce creates a flavor profile that's fundamentally more complex than any traditional topping. Hawaiian pizza outsells most specialty pizzas for a reason.
+      </div>
+      <div class="argument-bubble ai">
+        <span class="speaker">AI</span>
+        Popularity isn't culinary merit — it's accessibility. Pineapple releases moisture during baking that compromises dough integrity and dilutes the Maillard reaction on cheese. The sweetness overrides the balance Italian cuisine spent centuries perfecting.
+      </div>
+    </div>
+    <div class="vote-result">
+      <span class="vote-label">Community vote</span>
+      <div class="vote-bar-track">
+        <div class="vote-bar-inner" id="voteBar"></div>
+      </div>
+      <div class="vote-numbers">
+        <span class="blue">62%</span>
+        <span class="red">38%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features-section" id="features">
+  <h2 class="features-title">Built for<br>competition.</h2>
+  <div class="features-list">
+    <div class="feature-row">
+      <span class="feature-num">01.</span>
+      <span class="feature-name">Elo Rating</span>
+      <span class="feature-desc">A dynamic skill rating that rises and falls with every debate. Win against community consensus and climb the global leaderboard.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-num">02.</span>
+      <span class="feature-name">Streak Tracking</span>
+      <span class="feature-desc">Consecutive wins build your streak counter. Break records, earn fire badges, and let the arena know you're on a run.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-num">03.</span>
+      <span class="feature-name">Badges</span>
+      <span class="feature-desc">Unlock achievements like First Blood, AI Slayer, Crowd Favorite, and Philosopher King. Collect them all on your public profile.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-num">04.</span>
+      <span class="feature-name">Live Feed</span>
+      <span class="feature-desc">Browse debates in real time. Filter by category, sort by trending or biggest upsets, and vote on who made the stronger case.</span>
+    </div>
+    <div class="feature-row">
+      <span class="feature-num">05.</span>
+      <span class="feature-name">Daily Prompts</span>
+      <span class="feature-desc">Fresh debate topics delivered every day. Jump into trending conversations or submit your own controversial take.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LEADERBOARD ========== -->
+<section class="leaderboard-section" id="leaderboard">
+  <h2 class="leaderboard-title">Rankings.</h2>
+  <div class="lb-table">
+    <div class="lb-header">
+      <span>#</span>
+      <span>Debater</span>
+      <span>Elo</span>
+      <span>Record</span>
+      <span>Win %</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank">1</span>
+      <div class="lb-user">
+        <div class="lb-dot" style="background: var(--accent-blue);"></div>
+        <span class="lb-name">sophist_king</span>
+      </div>
+      <span class="lb-elo">1847</span>
+      <span class="lb-record">142W – 31L</span>
+      <span class="lb-rate">82%</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank">2</span>
+      <div class="lb-user">
+        <div class="lb-dot" style="background: var(--accent-red);"></div>
+        <span class="lb-name">argue_with_me</span>
+      </div>
+      <span class="lb-elo">1793</span>
+      <span class="lb-record">98W – 24L</span>
+      <span class="lb-rate">80%</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank">3</span>
+      <div class="lb-user">
+        <div class="lb-dot" style="background: #D4A017;"></div>
+        <span class="lb-name">rhetoric_404</span>
+      </div>
+      <span class="lb-elo">1756</span>
+      <span class="lb-record">87W – 29L</span>
+      <span class="lb-rate">75%</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank">4</span>
+      <div class="lb-user">
+        <div class="lb-dot" style="background: #64dca0;"></div>
+        <span class="lb-name">devil_advocate</span>
+      </div>
+      <span class="lb-elo">1721</span>
+      <span class="lb-record">64W – 22L</span>
+      <span class="lb-rate">74%</span>
+    </div>
+    <div class="lb-row">
+      <span class="lb-rank">5</span>
+      <div class="lb-user">
+        <div class="lb-dot" style="background: #a78bfa;"></div>
+        <span class="lb-name">no_u_actually</span>
+      </div>
+      <span class="lb-elo">1698</span>
+      <span class="lb-record">53W – 19L</span>
+      <span class="lb-rate">74%</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta-section" id="cta">
+  <h2>Think you<br>can <em>win?</em></h2>
+  <p class="cta-sub">Enter the arena. Drop your hottest take. Prove the internet wrong — one round at a time.</p>
+  <a href="#" class="cta-btn">Start a debate →</a>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <span class="footer-copy">Debate Me ©2026</span>
+  <ul class="footer-links">
+    <li><a href="#">Twitter</a></li>
+    <li><a href="#">Discord</a></li>
+    <li><a href="#">Github</a></li>
+    <li><a href="#">Terms</a></li>
+  </ul>
+</footer>
+
+<script>
+// ==================== HERO CANVAS — concentric swirling rings like Topology ====================
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, t = 0, dpr;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.offsetWidth;
+    h = canvas.offsetHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Center the vortex upper-right, like Topology
+    const cx = w * 0.62;
+    const cy = h * 0.32;
+    const maxR = Math.max(w, h) * 0.72;
+    const rings = 70;
+
+    for (let i = 0; i < rings; i++) {
+      const ratio = i / rings;
+      const r = ratio * maxR;
+
+      // Organic wobble
+      const wobX = Math.sin(t * 0.006 + i * 0.12) * (6 + i * 0.55);
+      const wobY = Math.cos(t * 0.005 + i * 0.1) * (4 + i * 0.35);
+      const rot = 0.04 * Math.sin(t * 0.002 + i * 0.04);
+
+      ctx.beginPath();
+      ctx.ellipse(
+        cx + wobX,
+        cy + wobY,
+        Math.max(r, 1),
+        Math.max(r * 0.82, 1),
+        rot,
+        0, Math.PI * 2
+      );
+
+      // Subtle rainbow/holographic hue shift like Topology
+      const hue = (180 + i * 4.5 + t * 0.04) % 360;
+      const sat = 15 + ratio * 30;
+      const lum = 78 - ratio * 18;
+      const alpha = 0.08 + ratio * 0.22;
+
+      ctx.strokeStyle = `hsla(${hue}, ${sat}%, ${lum}%, ${alpha})`;
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
+    }
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ==================== NAV SCROLL ====================
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// ==================== SCROLL REVEAL ====================
+const revealEls = document.querySelectorAll(
+  '.stagger-line, .numbered-block, .principle-card, .arena-card, .feature-row, .lb-row'
+);
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, idx) => {
+    if (entry.isIntersecting) {
+      // Stagger sibling animations
+      const parent = entry.target.parentElement;
+      const siblings = parent ? Array.from(parent.children).filter(c => revealEls.length && c.classList.contains(entry.target.classList[0])) : [];
+      const siblingIdx = siblings.indexOf(entry.target);
+      const delay = siblingIdx >= 0 ? siblingIdx * 120 : 0;
+
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, delay);
+
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ==================== VOTE BAR ANIMATION ====================
+const voteBar = document.getElementById('voteBar');
+const voteObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+      voteObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+voteObserver.observe(voteBar);
+</script>
+
+</body>
+</html>
