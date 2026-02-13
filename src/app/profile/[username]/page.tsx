@@ -68,7 +68,7 @@ export default function ProfilePage() {
 
       {/* Stats Row */}
       <ScrollReveal>
-        <div className="grid grid-cols-2 md:grid-cols-4 border border-white/[0.08] rounded-card overflow-hidden mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 border border-dark/[0.06] rounded-card overflow-hidden mb-16">
           {[
             { value: user.wins + user.losses, label: "Total Debates" },
             { value: `${winRate}%`, label: "Win Rate" },
@@ -81,9 +81,9 @@ export default function ProfilePage() {
             <div
               key={i}
               className={`flex flex-col items-center py-8 px-4 ${
-                i < 3 ? "md:border-r border-white/[0.08]" : ""
-              } ${i < 2 ? "border-b md:border-b-0 border-white/[0.08]" : ""} ${
-                i === 2 ? "border-b md:border-b-0 border-white/[0.08]" : ""
+                i < 3 ? "md:border-r border-dark/[0.06]" : ""
+              } ${i < 2 ? "border-b md:border-b-0 border-dark/[0.06]" : ""} ${
+                i === 2 ? "border-b md:border-b-0 border-dark/[0.06]" : ""
               }`}
             >
               <span className="font-serif italic text-[28px]">

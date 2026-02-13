@@ -9,14 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /* Dark theme: cream/dark are swapped so all existing utility classes
-           like bg-cream (= background) and text-dark (= foreground) keep working */
-        cream: "#0e0e0e",
-        dark: "#f0ece4",
-        surface: "#1a1a1a",
-        "surface-light": "#252525",
-        "accent-blue": "#4d7aff",
-        "accent-red": "#ff5249",
+        cream: "#f0ece4",
+        dark: "#0a0a0a",
+        "accent-blue": "#2a5cff",
+        "accent-red": "#e03e36",
         muted: "#8a8578",
       },
       fontFamily: {
@@ -27,9 +23,9 @@ const config: Config = {
         card: "24px",
       },
       boxShadow: {
-        card: "0 0 0 1px rgba(255,255,255,0.04), 0 2px 4px rgba(0,0,0,0.2), 0 24px 80px rgba(0,0,0,0.3)",
+        card: "0 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02), 0 24px 80px rgba(0,0,0,0.05)",
         "card-hover":
-          "0 0 0 1px rgba(255,255,255,0.06), 0 4px 8px rgba(0,0,0,0.25), 0 32px 96px rgba(0,0,0,0.4)",
+          "0 0 0 1px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.03), 0 32px 96px rgba(0,0,0,0.08)",
       },
       letterSpacing: {
         tightest: "-2px",

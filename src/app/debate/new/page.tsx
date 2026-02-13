@@ -77,7 +77,7 @@ function StartDebateContent() {
             placeholder="Pineapple belongs on pizza..."
             maxLength={200}
             rows={2}
-            className="w-full bg-transparent border-none border-b-2 border-white/[0.1] text-lg font-serif italic leading-relaxed placeholder:text-dark/25 focus:outline-none focus:border-white/30 resize-none py-4 transition-colors"
+            className="w-full bg-transparent border-none border-b-2 border-dark/10 text-lg font-serif italic leading-relaxed placeholder:text-dark/25 focus:outline-none focus:border-dark/30 resize-none py-4 transition-colors"
             style={{
               borderBottom: "1px solid rgba(10,10,10,0.1)",
             }}
@@ -103,7 +103,7 @@ function StartDebateContent() {
                 className={`px-4 py-2 rounded-full text-[11px] tracking-[2px] uppercase border cursor-pointer transition-all ${
                   category === cat.value
                     ? "bg-dark text-cream border-dark"
-                    : "bg-transparent text-muted border-white/[0.08] hover:border-white/20"
+                    : "bg-transparent text-muted border-dark/10 hover:border-dark/30"
                 }`}
               >
                 {cat.label}

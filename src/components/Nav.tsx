@@ -35,7 +35,7 @@ export function Nav() {
           <svg
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#0e0e0e"
+            stroke="#f0ece4"
             strokeWidth="2.5"
             strokeLinecap="round"
             className="w-3.5 h-3.5"
@@ -82,17 +82,17 @@ export function Nav() {
         aria-label="Toggle menu"
       >
         <span
-          className={`block w-5 h-[1.5px] bg-dark transition-all duration-300 ${
+          className={`block w-5 h-[1.5px] bg-dark transition-all ${
             mobileOpen ? "rotate-45 translate-y-[6.5px]" : ""
           }`}
         />
         <span
-          className={`block w-5 h-[1.5px] bg-dark transition-all duration-300 ${
+          className={`block w-5 h-[1.5px] bg-dark transition-all ${
             mobileOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`block w-5 h-[1.5px] bg-dark transition-all duration-300 ${
+          className={`block w-5 h-[1.5px] bg-dark transition-all ${
             mobileOpen ? "-rotate-45 -translate-y-[6.5px]" : ""
           }`}
         />

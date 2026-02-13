@@ -127,18 +127,18 @@ export default function LandingPage() {
             },
           ].map((principle, i) => (
             <ScrollReveal key={i}>
-              <div className="border border-dark/[0.08] p-9 md:p-12 flex flex-col gap-6 min-h-[360px] hover:bg-dark/[0.03] transition-colors">
+              <div className="border border-cream/[0.06] p-9 md:p-12 flex flex-col gap-6 min-h-[360px] hover:bg-cream/[0.03] transition-colors">
                 <h3 className="font-serif text-[26px] font-normal italic tracking-[-0.5px]">
                   {principle.title}
                 </h3>
-                <p className="text-sm leading-[1.75] text-dark/50 font-light flex-1">
+                <p className="text-sm leading-[1.75] text-cream/50 font-light flex-1">
                   {principle.desc}
                 </p>
-                <div className="border-t border-dark/[0.08] pt-5 mt-auto">
-                  <blockquote className="font-serif italic text-[15px] leading-relaxed text-dark/40 mb-2">
+                <div className="border-t border-cream/[0.08] pt-5 mt-auto">
+                  <blockquote className="font-serif italic text-[15px] leading-relaxed text-cream/40 mb-2">
                     {principle.quote}
                   </blockquote>
-                  <cite className="font-sans not-italic text-[11px] tracking-[1.5px] uppercase text-dark/25">
+                  <cite className="font-sans not-italic text-[11px] tracking-[1.5px] uppercase text-cream/25">
                     — {principle.cite}
                   </cite>
                 </div>
@@ -154,13 +154,13 @@ export default function LandingPage() {
           The Arena.
         </h2>
         <ScrollReveal>
-          <div className="bg-surface rounded-card p-7 md:p-14 shadow-card">
+          <div className="bg-white rounded-card p-7 md:p-14 shadow-card">
             {/* Meta */}
-            <div className="flex justify-between items-center mb-12 pb-7 border-b border-white/[0.08]">
+            <div className="flex justify-between items-center mb-12 pb-7 border-b border-dark/[0.06]">
               <span className="font-serif text-[22px] italic">
                 &ldquo;Pineapple belongs on pizza.&rdquo;
               </span>
-              <span className="text-[10.5px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-4 py-2 rounded-full">
+              <span className="text-[10.5px] tracking-[2px] uppercase text-muted bg-cream px-4 py-2 rounded-full">
                 Round 1 of 3
               </span>
             </div>
@@ -176,7 +176,7 @@ export default function LandingPage() {
               />
             </div>
             {/* Vote */}
-            <div className="mt-12 pt-8 border-t border-white/[0.08]">
+            <div className="mt-12 pt-8 border-t border-dark/[0.06]">
               <VoteBar humanPct={62} aiPct={38} showLabel />
             </div>
           </div>
@@ -190,7 +190,7 @@ export default function LandingPage() {
           <br />
           competition.
         </h2>
-        <div className="flex flex-col border-t border-white/[0.08] stagger-children">
+        <div className="flex flex-col border-t border-dark/[0.08] stagger-children">
           {[
             {
               num: "01.",
@@ -219,7 +219,7 @@ export default function LandingPage() {
             },
           ].map((feature, i) => (
             <ScrollReveal key={i}>
-              <div className="grid grid-cols-1 md:grid-cols-[80px_280px_1fr] gap-2 md:gap-10 py-10 border-b border-white/[0.08] items-start hover:bg-white/[0.03] transition-colors md:hover:mx-[-20px] md:hover:px-5">
+              <div className="grid grid-cols-1 md:grid-cols-[80px_280px_1fr] gap-2 md:gap-10 py-10 border-b border-dark/[0.08] items-start hover:bg-dark/[0.01] transition-colors md:hover:mx-[-20px] md:hover:px-5">
                 <span className="font-serif italic text-sm text-muted pt-1 hidden md:block">
                   {feature.num}
                 </span>
@@ -245,7 +245,7 @@ export default function LandingPage() {
         </h2>
         <div className="w-full max-w-[900px]">
           {/* Header */}
-          <div className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-3 border-b border-dark/10 text-[10px] tracking-[2.5px] uppercase text-dark/30">
+          <div className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-3 border-b border-cream/10 text-[10px] tracking-[2.5px] uppercase text-cream/30">
             <span>#</span>
             <span>Debater</span>
             <span>Elo</span>
@@ -267,7 +267,7 @@ export default function LandingPage() {
               );
               return (
                 <ScrollReveal key={user.id} direction="left">
-                  <div className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-6 border-b border-dark/[0.04] items-center hover:bg-dark/[0.02] transition-colors">
+                  <div className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-6 border-b border-cream/[0.04] items-center hover:bg-cream/[0.02] transition-colors">
                     <span
                       className={`font-serif italic text-lg ${rankColors[i]}`}
                     >

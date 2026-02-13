@@ -55,7 +55,7 @@ export default function LoginPage() {
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#0e0e0e"
+                stroke="#f0ece4"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 className="w-4 h-4"
@@ -85,7 +85,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               required
-              className="w-full bg-transparent border-b border-white/[0.1] py-3 text-base font-light placeholder:text-dark/25 focus:outline-none focus:border-white/30 transition-colors"
+              className="w-full bg-transparent border-b border-dark/10 py-3 text-base font-light placeholder:text-dark/25 focus:outline-none focus:border-dark/30 transition-colors"
             />
           </div>
 
@@ -97,7 +97,7 @@ export default function LoginPage() {
               placeholder="Password"
               required
               minLength={6}
-              className="w-full bg-transparent border-b border-white/[0.1] py-3 text-base font-light placeholder:text-dark/25 focus:outline-none focus:border-white/30 transition-colors"
+              className="w-full bg-transparent border-b border-dark/10 py-3 text-base font-light placeholder:text-dark/25 focus:outline-none focus:border-dark/30 transition-colors"
             />
           </div>
 
@@ -105,7 +105,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={handleGoogleAuth}
-            className="w-full py-3 rounded-full border border-white/[0.08] bg-transparent text-dark text-sm font-medium tracking-[1px] cursor-pointer transition-all hover:border-white/20 flex items-center justify-center gap-2"
+            className="w-full py-3 rounded-full border border-dark/10 bg-transparent text-dark text-sm font-medium tracking-[1px] cursor-pointer transition-all hover:border-dark/30 flex items-center justify-center gap-2"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path

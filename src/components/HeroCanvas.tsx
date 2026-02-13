@@ -84,11 +84,11 @@ export function HeroCanvas() {
             Math.PI * 2
           );
 
-          // Subtle holographic hue shift — tuned for dark background
-          const hue = (200 + i * 4.5 + t * 0.04) % 360;
-          const sat = 20 + ratio * 40;
-          const lum = 30 + ratio * 20;
-          const alpha = 0.06 + ratio * 0.18;
+          // Subtle holographic hue shift
+          const hue = (180 + i * 4.5 + t * 0.04) % 360;
+          const sat = 15 + ratio * 30;
+          const lum = 78 - ratio * 18;
+          const alpha = 0.08 + ratio * 0.22;
 
           c.strokeStyle = `hsla(${hue}, ${sat}%, ${lum}%, ${alpha})`;
           c.lineWidth = 1.1;
