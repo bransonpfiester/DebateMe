@@ -39,7 +39,7 @@ export default function DebateViewPage() {
   return (
     <div className="pt-32 pb-20 px-6 md:px-12 max-w-[800px] mx-auto">
       {/* Header */}
-      <div className="mb-10 pb-8 border-b border-dark/[0.06]">
+      <div className="mb-10 pb-8 border-b border-white/[0.08]">
         <h1 className="font-serif italic text-[clamp(28px,4vw,48px)] tracking-[-1px] leading-tight mb-6">
           &ldquo;{debate.topic}&rdquo;
         </h1>
@@ -53,10 +53,10 @@ export default function DebateViewPage() {
             </div>
             <span className="text-sm">{debate.user.username}</span>
           </div>
-          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-cream px-3 py-1.5 rounded-full">
+          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-3 py-1.5 rounded-full">
             vs AI
           </span>
-          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-cream px-3 py-1.5 rounded-full">
+          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-3 py-1.5 rounded-full">
             {debate.category}
           </span>
           <span className="text-xs text-muted">
@@ -87,7 +87,7 @@ export default function DebateViewPage() {
       </div>
 
       {/* Voting Section */}
-      <div className="mt-16 pt-10 border-t border-dark/[0.06]">
+      <div className="mt-16 pt-10 border-t border-white/[0.08]">
         {!voted ? (
           <div>
             <h2 className="font-serif text-2xl mb-8">
@@ -124,7 +124,7 @@ export default function DebateViewPage() {
       </div>
 
       {/* Comments Section */}
-      <div className="mt-16 pt-10 border-t border-dark/[0.06]">
+      <div className="mt-16 pt-10 border-t border-white/[0.08]">
         <h3 className="font-serif italic text-xl mb-8">Comments</h3>
         <div className="flex flex-col gap-5 mb-8">
           {comments.map((c, i) => (
@@ -149,7 +149,7 @@ export default function DebateViewPage() {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Add a comment..."
-            className="flex-1 bg-transparent border-b border-dark/10 py-2 text-sm font-light placeholder:text-dark/25 focus:outline-none focus:border-dark/30"
+            className="flex-1 bg-transparent border-b border-white/[0.1] py-2 text-sm font-light placeholder:text-dark/25 focus:outline-none focus:border-white/30"
           />
           <button
             disabled={!comment.trim()}

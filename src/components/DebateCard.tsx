@@ -17,7 +17,7 @@ export function DebateCard({ debate, showResult = false }: DebateCardProps) {
   const humanWon = debate.human_vote_pct > debate.ai_vote_pct;
 
   return (
-    <div className="bg-white rounded-card p-7 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-[2px] group">
+    <div className="bg-surface rounded-card p-7 md:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-[2px] group">
       {/* Top Row */}
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
@@ -31,10 +31,10 @@ export function DebateCard({ debate, showResult = false }: DebateCardProps) {
           <span className="text-sm font-normal">{debate.user.username}</span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-cream px-3 py-1.5 rounded-full">
+          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-3 py-1.5 rounded-full">
             vs AI
           </span>
-          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-cream px-3 py-1.5 rounded-full">
+          <span className="text-[10px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-3 py-1.5 rounded-full">
             {debate.category}
           </span>
         </div>

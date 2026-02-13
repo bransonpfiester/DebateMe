@@ -13,7 +13,7 @@ export function DailyPrompt({ prompt }: DailyPromptProps) {
   if (dismissed) return null;
 
   return (
-    <div className="bg-cream border border-dark/[0.06] rounded-card p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+    <div className="bg-surface border border-white/[0.06] rounded-card p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
       <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-8 flex-1">
         <span className="font-serif italic text-sm text-muted whitespace-nowrap">
           Today&apos;s Prompt

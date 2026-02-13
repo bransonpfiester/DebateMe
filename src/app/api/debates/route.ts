@@ -7,7 +7,7 @@ import type { CreateDebatePayload } from "@/types";
  */
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createServerSupabase();
+    const supabase = await createServerSupabase();
     const {
       data: { user },
     } = await supabase.auth.getUser();
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createServerSupabase();
+    const supabase = await createServerSupabase();
     const { searchParams } = new URL(request.url);
 
     const category = searchParams.get("category");

@@ -5,7 +5,7 @@
 /* ==================== BASE ==================== */
 @layer base {
   ::selection {
-    @apply bg-accent-blue text-white;
+    @apply bg-accent-blue text-cream;
   }
 
   html {
@@ -75,7 +75,7 @@
 
 /* ==================== FROSTED GLASS NAV ==================== */
 .nav-frosted {
-  background: rgba(240, 236, 228, 0.85);
+  background: rgba(14, 14, 14, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -99,10 +99,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(138, 133, 120, 0.3);
+  background: rgba(240, 236, 228, 0.15);
   border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(138, 133, 120, 0.5);
+  background: rgba(240, 236, 228, 0.3);
 }

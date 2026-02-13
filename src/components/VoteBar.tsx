@@ -59,7 +59,7 @@ export function VoteBar({
           <div
             className="h-full rounded-full transition-transform duration-[1500ms] ease-smooth origin-left"
             style={{
-              background: `linear-gradient(90deg, #2a5cff 0%, #2a5cff ${humanPct}%, transparent ${humanPct}%, transparent ${humanPct + 1}%, #e03e36 ${humanPct + 1}%, #e03e36 100%)`,
+              background: `linear-gradient(90deg, #4d7aff 0%, #4d7aff ${humanPct}%, transparent ${humanPct}%, transparent ${humanPct + 1}%, #ff5249 ${humanPct + 1}%, #ff5249 100%)`,
               transform: animated ? "scaleX(1)" : "scaleX(0)",
             }}
           />

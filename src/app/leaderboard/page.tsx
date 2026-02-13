@@ -50,7 +50,7 @@ export default function LeaderboardPage() {
               className={`px-4 py-2 rounded-full text-[11px] tracking-[2px] uppercase border cursor-pointer transition-all ${
                 selectedCategory === cat.value
                   ? "bg-dark text-cream border-dark"
-                  : "bg-transparent text-muted border-dark/10 hover:border-dark/30"
+                  : "bg-transparent text-muted border-white/[0.08] hover:border-white/20"
               }`}
             >
               {cat.label}
@@ -62,7 +62,7 @@ export default function LeaderboardPage() {
       {/* Leaderboard Table */}
       <div className="w-full max-w-[900px]">
         {/* Header Row */}
-        <div className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-3 border-b border-dark/[0.08] text-[10px] tracking-[2.5px] uppercase text-muted">
+        <div className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-3 border-b border-white/[0.08] text-[10px] tracking-[2.5px] uppercase text-muted">
           <span>#</span>
           <span>Debater</span>
           <span>Elo</span>
@@ -80,7 +80,7 @@ export default function LeaderboardPage() {
               <ScrollReveal key={user.id} direction="left" delay={i * 120}>
                 <Link
                   href={`/profile/${user.username}`}
-                  className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-6 border-b border-dark/[0.04] items-center hover:bg-dark/[0.02] transition-colors no-underline text-dark"
+                  className="grid grid-cols-[40px_1fr_80px] md:grid-cols-[50px_1fr_100px_120px_80px] gap-4 py-6 border-b border-white/[0.04] items-center hover:bg-white/[0.03] transition-colors no-underline text-dark"
                 >
                   <span
                     className={`font-serif italic text-lg ${

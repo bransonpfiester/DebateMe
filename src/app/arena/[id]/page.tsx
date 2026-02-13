@@ -16,7 +16,7 @@ export default function ArenaPage() {
     <Suspense
       fallback={
         <div className="pt-28 pb-20 px-6 md:px-12 max-w-[800px] mx-auto">
-          <div className="bg-white rounded-card p-7 md:p-12 shadow-card animate-pulse min-h-[400px]" />
+          <div className="bg-surface rounded-card p-7 md:p-12 shadow-card animate-pulse min-h-[400px]" />
         </div>
       }
     >
@@ -129,17 +129,17 @@ function ArenaContent() {
   return (
     <div className="pt-28 pb-20 px-6 md:px-12 max-w-[800px] mx-auto">
       {/* Arena Card */}
-      <div className="bg-white rounded-card p-7 md:p-12 shadow-card">
+      <div className="bg-surface rounded-card p-7 md:p-12 shadow-card">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10 pb-7 border-b border-dark/[0.06]">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10 pb-7 border-b border-white/[0.08]">
           <h1 className="font-serif italic text-xl md:text-2xl">
             &ldquo;{topic}&rdquo;
           </h1>
           <div className="flex items-center gap-3">
-            <span className="text-[10.5px] tracking-[2px] uppercase text-muted bg-cream px-4 py-2 rounded-full">
+            <span className="text-[10.5px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-4 py-2 rounded-full">
               Round {currentRound} of 3
             </span>
-            <span className="text-[10.5px] tracking-[2px] uppercase text-muted bg-cream px-4 py-2 rounded-full">
+            <span className="text-[10.5px] tracking-[2px] uppercase text-muted bg-white/[0.06] px-4 py-2 rounded-full">
               {category}
             </span>
           </div>
@@ -192,7 +192,7 @@ function ArenaContent() {
 
         {/* Input Area */}
         {!completed ? (
-          <div className="mt-10 pt-8 border-t border-dark/[0.06]">
+          <div className="mt-10 pt-8 border-t border-white/[0.08]">
             <textarea
               value={argument}
               onChange={(e) => setArgument(e.target.value)}
@@ -203,7 +203,7 @@ function ArenaContent() {
               }
               rows={4}
               disabled={loading || showRoundFlash}
-              className="w-full bg-cream/50 rounded-2xl p-5 text-[15px] leading-relaxed font-light placeholder:text-dark/25 focus:outline-none focus:ring-1 focus:ring-dark/10 resize-none transition-all disabled:opacity-50"
+              className="w-full bg-white/[0.04] rounded-2xl p-5 text-[15px] leading-relaxed font-light placeholder:text-dark/25 focus:outline-none focus:ring-1 focus:ring-white/10 resize-none transition-all disabled:opacity-50"
             />
             <div className="flex items-center justify-between mt-4">
               <span
@@ -220,7 +220,7 @@ function ArenaContent() {
               >
                 {loading ? (
                   <span className="flex items-center gap-2">
-                    <span className="w-3 h-3 border-2 border-cream/30 border-t-cream rounded-full animate-spin" />
+                    <span className="w-3 h-3 border-2 border-dark/30 border-t-dark rounded-full animate-spin" />
                     AI is thinking...
                   </span>
                 ) : (
@@ -231,7 +231,7 @@ function ArenaContent() {
           </div>
         ) : (
           /* Completed State */
-          <div className="mt-10 pt-8 border-t border-dark/[0.06] text-center">
+          <div className="mt-10 pt-8 border-t border-white/[0.08] text-center">
             <p className="font-serif italic text-xl mb-6 text-muted">
               Debate complete.
             </p>
